@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fragment-gateway
+  namespace: default
+  labels:
+    app: fragment-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fragment-gateway
+  template:
+    metadata:
+      labels:
+        app: fragment-gateway
+    spec:
+      containers:
+        - name: fragment-gateway
+          image: trutoo/fragment-gateway:1.1.0
+          ports:
+            - containerPort: 3000
+              name: api
+          env:
+            - name: NODE_ENV
+              value: production
