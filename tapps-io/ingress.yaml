@@ -12,8 +12,12 @@ spec:
   tls:
     - hosts:
         - tapps.io
-        - cms.tapps.io
+        - api.tapps.io
+        - content.tapps.io
+        - analytics.tapps.io
       secretName: tapps-tls
   rules:
     - host: tapps.io
-    - host: cms.tapps.io
+    - host: api.tapps.io
+    - host: content.tapps.io
+    - host: analytics.tapps.io
