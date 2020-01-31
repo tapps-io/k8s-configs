@@ -4,16 +4,16 @@ metadata:
   name: fragment-gateway
   namespace: default
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
     kubernetes.io/ingress.class: 'nginx'
   labels:
     app: fragment-gateway
 spec:
   rules:
-    - host: tapps.io
+    - host: api.tapps.io
       http:
         paths:
-          - path: /api/fragment-gateway(/|$)(.*)
+          - path: /fragment-gateway/?(.*)
             backend:
               serviceName: fragment-gateway
               servicePort: http
