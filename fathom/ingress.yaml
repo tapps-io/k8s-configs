@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: fathom-analytics
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: 'nginx'
+  labels:
+    app: fathom-analytics
+spec:
+  rules:
+    - host: analytics.tapps.io
+      http:
+        paths:
+          - backend:
+              serviceName: fathom-analytics
+              servicePort: http

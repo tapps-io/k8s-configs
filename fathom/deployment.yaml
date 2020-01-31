@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fathom-analytics
+  namespace: default
+  labels:
+    app: fathom-analytics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fathom-analytics
+  template:
+    metadata:
+      labels:
+        app: fathom-analytics
+    spec:
+      containers:
+        - name: fathom-analytics
+          image: usefathom/fathom:version-1.2.1
+          ports:
+            - containerPort: 8080
+              name: analytics
+          env:
+            - name: FATHOM_DEBUG
+              value: 'true'
+
+            - name: FATHOM_DATABASE_DRIVER
+              value: 'postgres'
+
+            - name: FATHOM_DATABASE_HOST
+              value: 'external-postgresql:25060'
+
+            - name: FATHOM_DATABASE_NAME
+              value: 'fathom'
+
+            - name: FATHOM_DATABASE_SSLMODE
+              value: 'require'
+
+            - name: FATHOM_DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: external-postgresql-fathom
+                  key: username
+
+            - name: FATHOM_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: external-postgresql-fathom
+                  key: password
+
+            - name: FATHOM_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: external-postgresql-fathom
+                  key: secret
