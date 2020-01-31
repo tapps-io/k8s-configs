@@ -1,0 +1,3 @@
+# NOT DEPLOYED
+
+For now we are using Google Analytics but are looking at Fathom as well. Does not use postgresql...
