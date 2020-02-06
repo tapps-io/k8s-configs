@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: fragment-gateway
-          image: trutoo/fragment-gateway:1.1.1
+          image: trutoo/fragment-gateway:1.2.0
           ports:
             - containerPort: 3000
               name: api
