@@ -17,10 +17,19 @@ spec:
     spec:
       containers:
         - name: fragment-gateway
-          image: trutoo/fragment-gateway:1.2.0
+          image: trutoo/fragment-gateway:1.2.3
           ports:
             - containerPort: 3000
               name: api
           env:
             - name: NODE_ENV
               value: production
+
+            - name: REGISTRY
+              value: https://npm.pkg.github.com
+
+            - name: REGISTRY_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: fragment-gateway
+                  key: registry-token
